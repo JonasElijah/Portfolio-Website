@@ -1,0 +1,213 @@
+/* ==========================================================
+   Design tokens — edit colors, type and spacing here.
+   ========================================================== */
+:root {
+  /* Palette */
+  --base: #0b241f;        /* page background (darker Deep Teal) */
+  --deep-teal: #123f36;   /* surfaces */
+  --teal: #2a6b5c;        /* glows, chips, borders */
+  --gold: #c49a45;        /* accent, CTAs, links */
+  --cream: #e8dcc4;       /* text */
+
+  /* Text tints */
+  --text: var(--cream);
+  --text-muted: rgb(232 220 196 / 0.7);
+  --text-subtle: rgb(232 220 196 / 0.55);
+
+  /* Surfaces */
+  --glass: rgb(18 63 54 / 0.55);
+  --glass-border: rgb(232 220 196 / 0.09);
+  --hairline: rgb(232 220 196 / 0.12);
+
+  /* Type */
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  --fs-display: clamp(2.75rem, 7.6vw, 6.5rem);   /* 104px max */
+  --fs-section: clamp(2.4rem, 5vw, 4.5rem);     /* 72px max */
+  --fs-title: clamp(1.75rem, 2.8vw, 2.5rem);    /* 40px max */
+  --fs-lead: clamp(1.06rem, 1.6vw, 1.5rem);     /* 24px max */
+  --fs-body: 1.0625rem;
+  --fs-small: 0.9375rem;
+  --fs-eyebrow: 0.8125rem;
+
+  /* Layout */
+  --container: 1200px;
+  --gutter: clamp(20px, 5vw, 40px);
+  --radius-lg: 28px;
+  --radius-md: 24px;
+  --nav-h: 72px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 24px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ---------- Grainy gradient background ---------- */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60vw 60vw at 12% 8%, rgb(42 107 92 / 0.7), transparent 65%),
+    radial-gradient(50vw 50vw at 95% 40%, rgb(196 154 69 / 0.26), transparent 65%),
+    radial-gradient(70vw 60vw at 70% 110%, rgb(42 107 92 / 0.55), transparent 65%),
+    var(--base);
+}
+
+.backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.16;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Base elements ---------- */
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--base);
+}
+
+/* ---------- Utilities ---------- */
+.container {
+  width: 100%;
+  max-width: calc(var(--container) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: clamp(80px, 12vw, 160px) 0;
+}
+
+.eyebrow {
+  display: block;
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: var(--fs-section);
+  margin-bottom: clamp(32px, 4vw, 56px);
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+.gold-text {
+  background: linear-gradient(90deg, var(--gold), var(--cream));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.9s var(--ease),
+    transform 0.9s var(--ease);
+  transition-delay: var(--delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

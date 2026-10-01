@@ -1,0 +1,249 @@
+/* ---------- Hero ---------- */
+.hero {
+  min-height: calc(92vh - var(--nav-h));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-block: clamp(72px, 10vw, 120px) 40px;
+}
+
+.heroTitle {
+  font-size: var(--fs-display);
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+}
+
+.heroLead {
+  max-width: 40ch;
+  margin: 28px auto 0;
+  font-size: var(--fs-lead);
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 44px;
+}
+
+/* ---------- Stats ---------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.stat {
+  padding: 32px;
+  border-radius: var(--radius-md);
+}
+
+.statValue {
+  font-size: clamp(2rem, 3.4vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+}
+
+.statLabel {
+  margin-top: 8px;
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+
+/* ---------- Work ---------- */
+.workGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.workGrid > .full {
+  grid-column: 1 / -1;
+}
+
+/* ---------- Experience ---------- */
+.job {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 2fr;
+  gap: 24px;
+  padding-block: 36px;
+  border-top: 1px solid var(--hairline);
+}
+
+.jobDates {
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--text-subtle);
+  padding-top: 6px;
+}
+
+.jobRole {
+  font-size: clamp(1.4rem, 2vw, 1.75rem);
+  letter-spacing: -0.02em;
+}
+
+.jobOrg {
+  margin-top: 6px;
+  font-weight: 500;
+  color: var(--gold);
+}
+
+.jobSummary {
+  color: var(--text-muted);
+}
+
+/* ---------- About ---------- */
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 80px);
+  align-items: start;
+}
+
+.aboutText p {
+  font-size: clamp(1.06rem, 1.4vw, 1.3rem);
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.aboutText p + p {
+  margin-top: 20px;
+}
+
+.eduList {
+  display: grid;
+  gap: 20px;
+}
+
+.edu {
+  padding: 28px 32px;
+  border-radius: var(--radius-md);
+}
+
+.eduTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: baseline;
+}
+
+.eduSchool {
+  font-size: 1.3rem;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+.eduDates {
+  flex-shrink: 0;
+  font-size: var(--fs-small);
+  color: var(--text-subtle);
+}
+
+.eduDegree {
+  margin-top: 6px;
+  color: var(--text-muted);
+}
+
+.eduNote {
+  margin-top: 6px;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--gold);
+}
+
+/* ---------- Toolkit ---------- */
+.toolkit {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.toolGroup {
+  padding: 28px;
+  border-radius: var(--radius-md);
+}
+
+.toolGroup h3 {
+  font-size: 1.375rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ---------- Contact ---------- */
+.contact {
+  text-align: center;
+}
+
+.contactTitle {
+  font-size: clamp(2.75rem, 6vw, 5rem);
+  letter-spacing: -0.04em;
+}
+
+.contactLead {
+  margin-top: 20px;
+  font-size: var(--fs-lead);
+  color: var(--text-muted);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1000px) {
+  .toolkit {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .job {
+    grid-template-columns: 1fr 2fr;
+  }
+  .jobSummary {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    min-height: auto;
+  }
+  .stats,
+  .workGrid,
+  .aboutGrid,
+  .toolkit {
+    grid-template-columns: 1fr;
+  }
+  .stats {
+    gap: 12px;
+  }
+  .stat {
+    padding: 22px 24px;
+  }
+  .actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .job {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding-block: 24px;
+  }
+  .jobSummary {
+    grid-column: auto;
+    margin-top: 8px;
+  }
+  .eduTop {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .edu {
+    padding: 24px;
+  }
+}
